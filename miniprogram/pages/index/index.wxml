@@ -1,0 +1,136 @@
+<wxs src="./index.wxs" module="utils" />
+
+<view class="page">
+  <!-- 顶栏 -->
+  <view class="topbar">
+    <view class="brand">
+      <view class="brand-dot"></view>
+      <text class="brand-text">随机数生成器</text>
+    </view>
+    <view class="pill-btn" bindtap="onShowHistory">历史记录</view>
+  </view>
+
+  <!-- 配置卡片 -->
+  <view class="card">
+    <view class="section-label">
+      <view class="section-dot"></view>
+      <text>参数设置</text>
+    </view>
+
+    <view class="param-grid">
+      <view class="param-cell">
+        <text class="param-label">最小值</text>
+        <input class="param-input" type="number" value="{{minVal}}" bindinput="onMinInput" />
+      </view>
+      <view class="param-cell">
+        <text class="param-label">最大值</text>
+        <input class="param-input" type="number" value="{{maxVal}}" bindinput="onMaxInput" />
+      </view>
+      <view class="param-cell">
+        <text class="param-label">生成个数</text>
+        <input class="param-input" type="number" value="{{count}}" bindinput="onCountInput" />
+      </view>
+      <view class="param-cell param-switch-cell">
+        <view>
+          <text class="param-label">允许重复</text>
+          <text class="param-status" style="color: {{allowDup ? 'var(--mint)' : 'var(--ink-quiet)'}}">{{allowDup ? '已开启' : '已关闭'}}</text>
+        </view>
+        <switch checked="{{allowDup}}" bindchange="onDupChange" color="#45e6a4" />
+      </view>
+    </view>
+
+    <view wx:if="{{errorMsg}}" class="error-msg">{{errorMsg}}</view>
+
+    <view class="btn-row">
+      <view class="pill-btn btn-reset" bindtap="onReset">重置</view>
+      <view class="pill-btn-primary btn-generate" bindtap="onGenerate">生成随机数</view>
+    </view>
+  </view>
+
+  <!-- 结果卡片 -->
+  <view class="card" wx:if="{{generated}}">
+    <view class="result-header">
+      <view class="section-label">
+        <view class="section-dot"></view>
+        <text>生成结果</text>
+      </view>
+      <view class="pill-btn" bindtap="onCopy">复制结果</view>
+    </view>
+
+    <!-- 数字网格 -->
+    <view class="num-grid">
+      <view
+        wx:for="{{results}}"
+        wx:key="index"
+        class="num-cell {{item.isBig ? 'big' : 'small'}}"
+      >
+        <text class="num-value">{{item.value}}</text>
+        <text class="num-badge {{item.isBig ? 'big' : 'small'}}">{{item.badge}}</text>
+      </view>
+    </view>
+
+    <!-- 统计区 -->
+    <view class="stats-divider"></view>
+    <view class="stats-section">
+      <text class="stats-title">大小统计（分界点：{{threshold}}）</text>
+      <view class="stats-row">
+        <view class="stats-cell">
+          <text class="stats-label big">大（≥{{threshold}}）</text>
+          <text class="stats-num big">{{bigCount}}</text>
+          <text class="stats-pct">{{bigCount + smallCount > 0 ? (bigCount / (bigCount + smallCount) * 100).toFixed(1) : '0.0'}}%</text>
+        </view>
+        <view class="stats-cell">
+          <text class="stats-label small">小（&lt;{{threshold}}）</text>
+          <text class="stats-num small">{{smallCount}}</text>
+          <text class="stats-pct">{{bigCount + smallCount > 0 ? (smallCount / (bigCount + smallCount) * 100).toFixed(1) : '0.0'}}%</text>
+        </view>
+      </view>
+      <view class="ratio-bar">
+        <view class="ratio-big" style="width: {{bigCount + smallCount > 0 ? bigCount / (bigCount + smallCount) * 100 : 50}}%"></view>
+        <view class="ratio-small" style="width: {{bigCount + smallCount > 0 ? smallCount / (bigCount + smallCount) * 100 : 50}}%"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="card" wx:if="{{!generated}}">
+    <text class="empty-text">请生成随机数</text>
+  </view>
+
+  <!-- 历史记录弹窗 -->
+  <view class="modal-mask" wx:if="{{showHistory}}" bindtap="onHideHistory">
+    <view class="modal-panel" catchtap="">
+      <view class="modal-header">
+        <view class="section-label">
+          <view class="section-dot"></view>
+          <text>历史记录</text>
+        </view>
+        <text class="modal-close" bindtap="onHideHistory">×</text>
+      </view>
+
+      <scroll-view scroll-y class="modal-scroll">
+        <view wx:if="{{history.length === 0}}" class="empty-text" style="padding: 40rpx 0;">暂无记录</view>
+        <view
+          wx:for="{{history}}"
+          wx:key="id"
+          class="history-item"
+          data-record="{{item}}"
+          bindtap="onHistoryTap"
+        >
+          <view class="history-top">
+            <text class="history-params">{{item.minVal}} ~ {{item.maxVal}} × {{item.count}}个</text>
+            <text class="history-time">{{utils.formatTime(item.timestamp)}}</text>
+          </view>
+          <view class="history-stats">
+            <text class="history-big">大 {{item.bigCount}}</text>
+            <text class="history-sep">|</text>
+            <text class="history-small">小 {{item.smallCount}}</text>
+            <text class="history-dup">{{item.allowDup ? '允许重复' : '不重复'}}</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <text class="modal-hint">点击记录可回看完整结果</text>
+    </view>
+  </view>
+</view>
