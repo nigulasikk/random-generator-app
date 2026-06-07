@@ -11,7 +11,11 @@ Page({
     errorMsg: '',
     threshold: 50,
     bigCount: 0,
-    smallCount: 0
+    smallCount: 0,
+    bigPct: '0.0',
+    smallPct: '0.0',
+    bigRatio: 50,
+    smallRatio: 50
   },
 
   onLoad() {
@@ -91,12 +95,22 @@ Page({
       }
     })
 
+    const total = bigCount + smallCount
+    const bigPct = total > 0 ? (bigCount / total * 100).toFixed(1) : '0.0'
+    const smallPct = total > 0 ? (smallCount / total * 100).toFixed(1) : '0.0'
+    const bigRatio = total > 0 ? bigCount / total * 100 : 50
+    const smallRatio = total > 0 ? smallCount / total * 100 : 50
+
     this.setData({
       results,
       generated: true,
       threshold,
       bigCount,
       smallCount,
+      bigPct,
+      smallPct,
+      bigRatio,
+      smallRatio,
       errorMsg: ''
     })
 

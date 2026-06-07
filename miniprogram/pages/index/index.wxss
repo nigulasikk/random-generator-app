@@ -78,6 +78,9 @@
   margin-top: 4rpx;
 }
 
+.param-status.status-on { color: var(--mint); }
+.param-status.status-off { color: var(--ink-quiet); }
+
 /* 错误提示 */
 .error-msg {
   color: var(--small-color);

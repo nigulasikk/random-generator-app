@@ -33,7 +33,7 @@
       <view class="param-cell param-switch-cell">
         <view>
           <text class="param-label">允许重复</text>
-          <text class="param-status" style="color: {{allowDup ? 'var(--mint)' : 'var(--ink-quiet)'}}">{{allowDup ? '已开启' : '已关闭'}}</text>
+          <text class="param-status {{allowDup ? 'status-on' : 'status-off'}}">{{allowDup ? '已开启' : '已关闭'}}</text>
         </view>
         <switch checked="{{allowDup}}" bindchange="onDupChange" color="#45e6a4" />
       </view>
@@ -77,17 +77,17 @@
         <view class="stats-cell">
           <text class="stats-label big">大（≥{{threshold}}）</text>
           <text class="stats-num big">{{bigCount}}</text>
-          <text class="stats-pct">{{bigCount + smallCount > 0 ? (bigCount / (bigCount + smallCount) * 100).toFixed(1) : '0.0'}}%</text>
+          <text class="stats-pct">{{bigPct}}%</text>
         </view>
         <view class="stats-cell">
           <text class="stats-label small">小（&lt;{{threshold}}）</text>
           <text class="stats-num small">{{smallCount}}</text>
-          <text class="stats-pct">{{bigCount + smallCount > 0 ? (smallCount / (bigCount + smallCount) * 100).toFixed(1) : '0.0'}}%</text>
+          <text class="stats-pct">{{smallPct}}%</text>
         </view>
       </view>
       <view class="ratio-bar">
-        <view class="ratio-big" style="width: {{bigCount + smallCount > 0 ? bigCount / (bigCount + smallCount) * 100 : 50}}%"></view>
-        <view class="ratio-small" style="width: {{bigCount + smallCount > 0 ? smallCount / (bigCount + smallCount) * 100 : 50}}%"></view>
+        <view class="ratio-big" style="width: {{bigRatio}}%"></view>
+        <view class="ratio-small" style="width: {{smallRatio}}%"></view>
       </view>
     </view>
   </view>
