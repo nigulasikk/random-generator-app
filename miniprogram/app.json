@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "随机数生成器",
+    "navigationBarBackgroundColor": "#0a0d12",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0a0d12",
+    "backgroundTextStyle": "dark"
+  },
+  "sitemapLocation": "sitemap.json"
+}
