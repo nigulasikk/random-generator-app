@@ -15,7 +15,9 @@ Page({
     bigPct: '0.0',
     smallPct: '0.0',
     bigRatio: 50,
-    smallRatio: 50
+    smallRatio: 50,
+    roundCount: 0,
+    sumTotal: 0
   },
 
   onLoad() {
@@ -23,19 +25,19 @@ Page({
   },
 
   onMinInput(e) {
-    this.setData({ minVal: this.parseInput(e.detail.value), errorMsg: '' })
+    this.setData({ minVal: this.parseInput(e.detail.value), errorMsg: '', roundCount: 0 })
   },
 
   onMaxInput(e) {
-    this.setData({ maxVal: this.parseInput(e.detail.value), errorMsg: '' })
+    this.setData({ maxVal: this.parseInput(e.detail.value), errorMsg: '', roundCount: 0 })
   },
 
   onCountInput(e) {
-    this.setData({ count: this.parseInput(e.detail.value), errorMsg: '' })
+    this.setData({ count: this.parseInput(e.detail.value), errorMsg: '', roundCount: 0 })
   },
 
   onDupChange(e) {
-    this.setData({ allowDup: e.detail.value, errorMsg: '' })
+    this.setData({ allowDup: e.detail.value, errorMsg: '', roundCount: 0 })
   },
 
   parseInput(val) {
@@ -51,7 +53,9 @@ Page({
       allowDup: true,
       results: [],
       generated: false,
-      errorMsg: ''
+      errorMsg: '',
+      roundCount: 0,
+      sumTotal: 0
     })
   },
 
@@ -88,9 +92,11 @@ Page({
       } else {
         smallCount++
       }
+      const isGuan = num === minVal || num === maxVal
       return {
         value: num,
         isBig,
+        isGuan,
         badge: isBig ? bigCount : smallCount
       }
     })
@@ -100,6 +106,8 @@ Page({
     const smallPct = total > 0 ? (smallCount / total * 100).toFixed(1) : '0.0'
     const bigRatio = total > 0 ? bigCount / total * 100 : 50
     const smallRatio = total > 0 ? smallCount / total * 100 : 50
+    const sumTotal = numbers.reduce(function(a, b) { return a + b }, 0)
+    const newRound = this.data.roundCount + 1
 
     this.setData({
       results,
@@ -111,10 +119,12 @@ Page({
       smallPct,
       bigRatio,
       smallRatio,
+      roundCount: newRound,
+      sumTotal,
       errorMsg: ''
     })
 
-    this.saveToHistory(results, threshold, bigCount, smallCount)
+    this.saveToHistory(results, threshold, bigCount, smallCount, sumTotal)
   },
 
   generateNumbers(min, max, count, allowDup) {
@@ -144,7 +154,7 @@ Page({
     })
   },
 
-  saveToHistory(results, threshold, bigCount, smallCount) {
+  saveToHistory(results, threshold, bigCount, smallCount, sumTotal) {
     const { minVal, maxVal, count, allowDup } = this.data
     const record = {
       id: Date.now(),
@@ -155,6 +165,7 @@ Page({
       threshold,
       bigCount,
       smallCount,
+      sumTotal,
       results,
       timestamp: Date.now()
     }

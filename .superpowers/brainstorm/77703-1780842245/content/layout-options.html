@@ -1,0 +1,116 @@
+<h2>随机数生成器 — 布局方案对比</h2>
+<p class="subtitle">两种页面结构，都适配 silent-night-ui 暗色风格。选择你偏好的方向。</p>
+
+<div class="cards">
+  <!-- Option A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0a0d12; border-radius:12px; padding:20px; font-family:-apple-system,system-ui,sans-serif; color:#ececec; font-size:12px;">
+        <!-- Topbar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#45e6a4;display:inline-block;"></span>
+            <span style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#b8b8b2;">RANDOM GEN</span>
+          </div>
+        </div>
+
+        <!-- Result area placeholder -->
+        <div style="background:#14181e; border-radius:16px; padding:16px; margin-bottom:12px; text-align:center; min-height:60px;">
+          <div style="font-size:10px;color:#7e828a;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;">RESULTS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;">
+            <span style="background:rgba(76,175,80,0.2);color:#81c784;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:600;">42</span>
+            <span style="background:rgba(239,83,80,0.2);color:#ef9a9a;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:600;">15</span>
+            <span style="background:rgba(76,175,80,0.2);color:#81c784;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:600;">58</span>
+            <span style="background:rgba(239,83,80,0.2);color:#ef9a9a;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:600;">8</span>
+            <span style="background:rgba(76,175,80,0.2);color:#81c784;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:600;">37</span>
+            <span style="background:rgba(239,83,80,0.2);color:#ef9a9a;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:600;">22</span>
+          </div>
+        </div>
+
+        <!-- Stats bar -->
+        <div style="display:flex;gap:8px;margin-bottom:12px;">
+          <div style="flex:1;background:#14181e;border-radius:10px;padding:10px;text-align:center;">
+            <div style="font-size:9px;color:#7e828a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;">BIG</div>
+            <div style="font-size:16px;font-weight:600;color:#81c784;">3</div>
+          </div>
+          <div style="flex:1;background:#14181e;border-radius:10px;padding:10px;text-align:center;">
+            <div style="font-size:9px;color:#7e828a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;">SMALL</div>
+            <div style="font-size:16px;font-weight:600;color:#ef9a9a;">3</div>
+          </div>
+        </div>
+
+        <!-- Config section -->
+        <div style="background:#14181e; border-radius:12px; padding:12px; margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <div><span style="color:#7e828a;font-size:10px;">Min</span> <span style="color:#ececec;font-size:11px;">0</span></div>
+            <div><span style="color:#7e828a;font-size:10px;">Max</span> <span style="color:#ececec;font-size:11px;">60</span></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <div><span style="color:#7e828a;font-size:10px;">Count</span> <span style="color:#ececec;font-size:11px;">100</span></div>
+            <div style="display:flex;align-items:center;gap:4px;"><span style="color:#7e828a;font-size:10px;">Dup</span><span style="width:22px;height:12px;background:#45e6a4;border-radius:6px;display:inline-block;"></span></div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div style="display:flex;gap:8px;">
+          <button style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#b8b8b2;padding:8px;border-radius:999px;font-size:10px;">Reset</button>
+          <button style="flex:1;background:#45e6a4;border:none;color:#0a1010;padding:8px;border-radius:999px;font-size:10px;font-weight:600;">Generate</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. 单页滚动（推荐）</h3>
+      <p>结果区在上方（带红绿标色），统计摘要紧跟其后，配置和操作按钮在底部。类似原始小程序的布局，但结果更突出。生成后自动滚到结果区。</p>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="background:#0a0d12; border-radius:12px; padding:20px; font-family:-apple-system,system-ui,sans-serif; color:#ececec; font-size:12px;">
+        <!-- Topbar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#45e6a4;display:inline-block;"></span>
+            <span style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#b8b8b2;">RANDOM GEN</span>
+          </div>
+        </div>
+
+        <!-- Config section first -->
+        <div style="background:#14181e; border-radius:16px; padding:16px; margin-bottom:12px;">
+          <div style="font-size:10px;color:#7e828a;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">SETTINGS</div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <div><span style="color:#7e828a;font-size:10px;">Min</span> <span style="color:#ececec;font-size:11px;">0</span></div>
+            <div><span style="color:#7e828a;font-size:10px;">Max</span> <span style="color:#ececec;font-size:11px;">60</span></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+            <div><span style="color:#7e828a;font-size:10px;">Count</span> <span style="color:#ececec;font-size:11px;">100</span></div>
+            <div style="display:flex;align-items:center;gap:4px;"><span style="color:#7e828a;font-size:10px;">Dup</span><span style="width:22px;height:12px;background:#45e6a4;border-radius:6px;display:inline-block;"></span></div>
+          </div>
+          <!-- Generate button inside config -->
+          <button style="width:100%;background:#45e6a4;border:none;color:#0a1010;padding:10px;border-radius:999px;font-size:11px;font-weight:600;">Generate</button>
+        </div>
+
+        <!-- Result placeholder (initially empty) -->
+        <div style="background:#14181e; border-radius:16px; padding:20px; text-align:center;">
+          <div style="color:#4f535b;font-size:12px;">Tap "Generate" to start</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. 配置优先</h3>
+      <p>配置区在上方，按下生成后结果和统计在下方展开。更接近原始小程序截图的布局顺序。首次打开时看到的是配置界面，生成后结果向下推展。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;">
+  <h3>两种方案的共同点</h3>
+  <ul>
+    <li><strong>结果数字网格</strong> — 每个数字一个方块，大数绿色背景、小数红色背景</li>
+    <li><strong>统计摘要</strong> — 大/小的数量统计和占比</li>
+    <li><strong>核心配置</strong> — 最小值、最大值、生成个数、允许重复开关</li>
+    <li><strong>操作按钮</strong> — 重置、生成、复制结果</li>
+    <li><strong>暗色主题</strong> — silent-night-ui 风格，mint accent 用于品牌和按钮</li>
+  </ul>
+</div>

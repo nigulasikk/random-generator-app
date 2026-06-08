@@ -1,0 +1,142 @@
+<h2>完整设计 — 页面结构与交互</h2>
+<p class="subtitle">方案 B：配置优先，结果向下展开</p>
+
+<div class="section">
+  <div class="mockup">
+    <div class="mockup-header">完整页面结构（从上到下）</div>
+    <div class="mockup-body" style="background:#0a0d12; padding:24px; font-family:-apple-system,system-ui,sans-serif; color:#ececec; font-size:13px;">
+
+      <!-- 1. 顶栏 -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.07);">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:7px;height:7px;border-radius:50%;background:#45e6a4;display:inline-block;box-shadow:0 0 8px rgba(69,230,164,0.35);"></span>
+          <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#b8b8b2;font-weight:500;">随机数生成器</span>
+        </div>
+      </div>
+
+      <!-- 2. 配置卡片 -->
+      <div style="background:#14181e; border-radius:20px; padding:24px; margin-bottom:14px; border:1px solid rgba(255,255,255,0.07);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:#45e6a4;box-shadow:0 0 6px rgba(69,230,164,0.35);display:inline-block;"></span>
+          <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#7e828a;font-weight:600;">参数设置</span>
+        </div>
+
+        <!-- 最小值 / 最大值 -->
+        <div style="display:flex;gap:12px;margin-bottom:12px;">
+          <div style="flex:1;background:#1a1f27;border-radius:14px;padding:14px 16px;">
+            <div style="font-size:10px;color:#7e828a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;font-weight:600;">最小值</div>
+            <div style="font-size:20px;font-weight:600;color:#ececec;font-family:'SF Mono',Consolas,monospace;">0</div>
+          </div>
+          <div style="flex:1;background:#1a1f27;border-radius:14px;padding:14px 16px;">
+            <div style="font-size:10px;color:#7e828a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;font-weight:600;">最大值</div>
+            <div style="font-size:20px;font-weight:600;color:#ececec;font-family:'SF Mono',Consolas,monospace;">60</div>
+          </div>
+        </div>
+
+        <!-- 生成个数 / 允许重复 -->
+        <div style="display:flex;gap:12px;margin-bottom:18px;">
+          <div style="flex:1;background:#1a1f27;border-radius:14px;padding:14px 16px;">
+            <div style="font-size:10px;color:#7e828a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;font-weight:600;">生成个数</div>
+            <div style="font-size:20px;font-weight:600;color:#ececec;font-family:'SF Mono',Consolas,monospace;">100</div>
+          </div>
+          <div style="flex:1;background:#1a1f27;border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;">
+            <div>
+              <div style="font-size:10px;color:#7e828a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;font-weight:600;">允许重复</div>
+              <div style="font-size:13px;color:#45e6a4;font-weight:500;">已开启</div>
+            </div>
+            <div style="width:36px;height:20px;background:#45e6a4;border-radius:10px;position:relative;">
+              <div style="width:16px;height:16px;background:white;border-radius:50%;position:absolute;right:2px;top:2px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div style="display:flex;gap:10px;">
+          <button style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#b8b8b2;padding:12px;border-radius:999px;font-size:12px;cursor:pointer;">重置</button>
+          <button style="flex:2;background:#45e6a4;border:none;color:#0a1010;padding:12px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;">生成随机数</button>
+        </div>
+      </div>
+
+      <!-- 3. 结果区（生成后展示） -->
+      <div style="background:#14181e; border-radius:20px; padding:24px; margin-bottom:14px; border:1px solid rgba(255,255,255,0.07);">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#45e6a4;box-shadow:0 0 6px rgba(69,230,164,0.35);display:inline-block;"></span>
+            <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#7e828a;font-weight:600;">生成结果</span>
+          </div>
+          <!-- 复制按钮 -->
+          <button style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#b8b8b2;padding:5px 14px;border-radius:999px;font-size:11px;cursor:pointer;">复制结果</button>
+        </div>
+
+        <!-- 数字网格 -->
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:13px;font-weight:600;">42</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:13px;font-weight:600;">15</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:13px;font-weight:600;">58</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:13px;font-weight:600;">8</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:13px;font-weight:600;">37</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:13px;font-weight:600;">22</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:13px;font-weight:600;">51</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:13px;font-weight:600;">3</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:13px;font-weight:600;">45</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:13px;font-weight:600;">12</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:13px;font-weight:600;">60</span>
+          <span style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:13px;font-weight:600;">28</span>
+        </div>
+
+        <!-- 分割线 -->
+        <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:16px;">
+          <div style="font-size:10px;color:#7e828a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;font-weight:600;">大小统计（分界点：30）</div>
+          <div style="display:flex;gap:12px;">
+            <div style="flex:1;background:#1a1f27;border-radius:14px;padding:16px;text-align:center;">
+              <div style="font-size:10px;color:#81c784;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;font-weight:600;">大（≥30）</div>
+              <div style="font-size:28px;font-weight:600;color:#81c784;font-family:'SF Mono',Consolas,monospace;">6</div>
+              <div style="font-size:11px;color:#7e828a;margin-top:4px;">50.0%</div>
+            </div>
+            <div style="flex:1;background:#1a1f27;border-radius:14px;padding:16px;text-align:center;">
+              <div style="font-size:10px;color:#ef9a9a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;font-weight:600;">小（&lt;30）</div>
+              <div style="font-size:28px;font-weight:600;color:#ef9a9a;font-family:'SF Mono',Consolas,monospace;">6</div>
+              <div style="font-size:11px;color:#7e828a;margin-top:4px;">50.0%</div>
+            </div>
+          </div>
+
+          <!-- 比例条 -->
+          <div style="margin-top:12px;height:6px;background:#1a1f27;border-radius:3px;overflow:hidden;display:flex;">
+            <div style="width:50%;background:rgba(76,175,80,0.5);"></div>
+            <div style="width:50%;background:rgba(239,83,80,0.5);"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;">
+  <h3>交互流程</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+    <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:16px;">
+      <div class="label">1. 初始状态</div>
+      <p>显示配置卡片，结果区显示"请生成随机数"的空状态提示</p>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:16px;">
+      <div class="label">2. 点击生成</div>
+      <p>结果区展开，数字网格以红/绿背景区分大小，底部统计自动计算</p>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:16px;">
+      <div class="label">3. 再次操作</div>
+      <p>可修改参数重新生成，或点击复制将所有数字复制到剪贴板</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;">
+  <h3>设计要点</h3>
+  <ul>
+    <li><strong>配色</strong> — 整体 silent-night-ui 暗色风格；大数用柔和绿（<span style="color:#81c784;">#81c784</span>），小数用柔和红（<span style="color:#ef9a9a;">#ef9a9a</span>）</li>
+    <li><strong>分界点</strong> — 自动取 (最小值+最大值)/2，示例中 (0+60)/2=30，≥30 为大，<30 为小</li>
+    <li><strong>数字方块</strong> — 40×40rpx 圆角方块，红/绿低饱和度背景 + 对应色文字</li>
+    <li><strong>统计区</strong> — 大/小数量 + 百分比 + 可视化比例条</li>
+    <li><strong>文案</strong> — 全部中文界面</li>
+  </ul>
+</div>

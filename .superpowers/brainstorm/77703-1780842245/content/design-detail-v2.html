@@ -1,0 +1,142 @@
+<h2>设计更新 — 角标计数 + 历史弹窗</h2>
+<p class="subtitle">两处改动的效果预览</p>
+
+<div class="section">
+  <h3>改动 1：数字方块带序号角标</h3>
+  <p>每个数字右上角显示序号（从 1 开始），方便用户快速数数验证统计结果。同类颜色的角标连续编号。</p>
+  <div class="mockup">
+    <div class="mockup-header">数字网格 — 带角标 vs 不带角标</div>
+    <div class="mockup-body">
+      <div class="split" style="gap:24px;">
+        <!-- Before -->
+        <div style="flex:1;">
+          <div class="label" style="margin-bottom:12px;">之前（无角标）</div>
+          <div style="background:#0a0d12;border-radius:12px;padding:16px;">
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:14px;font-weight:600;">42</span>
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:14px;font-weight:600;">15</span>
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:14px;font-weight:600;">58</span>
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:14px;font-weight:600;">8</span>
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:14px;font-weight:600;">37</span>
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:14px;font-weight:600;">22</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- After -->
+        <div style="flex:1;">
+          <div class="label" style="margin-bottom:12px;color:#45e6a4;">之后（带角标）</div>
+          <div style="background:#0a0d12;border-radius:12px;padding:16px;">
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <!-- 大1 -->
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:14px;font-weight:600;position:relative;">42<span style="position:absolute;top:2px;right:4px;font-size:8px;color:rgba(129,199,132,0.7);font-weight:500;">1</span></span>
+              <!-- 小1 -->
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:14px;font-weight:600;position:relative;">15<span style="position:absolute;top:2px;right:4px;font-size:8px;color:rgba(239,154,154,0.7);font-weight:500;">1</span></span>
+              <!-- 大2 -->
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:14px;font-weight:600;position:relative;">58<span style="position:absolute;top:2px;right:4px;font-size:8px;color:rgba(129,199,132,0.7);font-weight:500;">2</span></span>
+              <!-- 小2 -->
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:14px;font-weight:600;position:relative;">8<span style="position:absolute;top:2px;right:4px;font-size:8px;color:rgba(239,154,154,0.7);font-weight:500;">2</span></span>
+              <!-- 大3 -->
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(76,175,80,0.15);color:#81c784;border-radius:10px;font-size:14px;font-weight:600;position:relative;">37<span style="position:absolute;top:2px;right:4px;font-size:8px;color:rgba(129,199,132,0.7);font-weight:500;">3</span></span>
+              <!-- 小3 -->
+              <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(239,83,80,0.15);color:#ef9a9a;border-radius:10px;font-size:14px;font-weight:600;position:relative;">22<span style="position:absolute;top:2px;right:4px;font-size:8px;color:rgba(239,154,154,0.7);font-weight:500;">3</span></span>
+            </div>
+            <div style="margin-top:12px;font-size:11px;color:#7e828a;">
+              角标含义：绿色 <span style="color:#81c784;">1,2,3</span> = 第几个大数 &nbsp;｜&nbsp; 红色 <span style="color:#ef9a9a;">1,2,3</span> = 第几个小数
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>改动 2：历史记录弹窗</h3>
+  <p>顶栏增加「历史」按钮，点击弹出模态窗，显示过往生成记录（带时间戳），可点击回看。</p>
+  <div class="mockup">
+    <div class="mockup-header">历史记录弹窗</div>
+    <div class="mockup-body">
+      <div style="background:#0a0d12;border-radius:12px;padding:24px;font-family:-apple-system,system-ui,sans-serif;color:#ececec;font-size:13px;">
+
+        <!-- 顶栏（带历史按钮） -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#45e6a4;display:inline-block;box-shadow:0 0 8px rgba(69,230,164,0.35);"></span>
+            <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#b8b8b2;font-weight:500;">随机数生成器</span>
+          </div>
+          <button style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#b8b8b2;padding:6px 14px;border-radius:999px;font-size:11px;cursor:pointer;">历史记录</button>
+        </div>
+
+        <!-- 弹窗遮罩 -->
+        <div style="background:rgba(0,0,0,0.6);border-radius:12px;padding:16px;">
+          <!-- 弹窗 -->
+          <div style="background:#14181e;border-radius:20px;padding:24px;border:1px solid rgba(255,255,255,0.07);max-width:360px;margin:0 auto;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:#45e6a4;box-shadow:0 0 6px rgba(69,230,164,0.35);display:inline-block;"></span>
+                <span style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#7e828a;font-weight:600;">历史记录</span>
+              </div>
+              <span style="color:#7e828a;font-size:16px;cursor:pointer;">×</span>
+            </div>
+
+            <!-- 记录列表 -->
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <!-- 记录 1 -->
+              <div style="background:#1a1f27;border-radius:14px;padding:14px 16px;cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <span style="font-size:12px;color:#ececec;font-weight:600;">0 ~ 60 × 100个</span>
+                  <span style="font-size:10px;color:#7e828a;">22:15:03</span>
+                </div>
+                <div style="display:flex;gap:8px;font-size:11px;">
+                  <span style="color:#81c784;">大 52</span>
+                  <span style="color:#7e828a;">|</span>
+                  <span style="color:#ef9a9a;">小 48</span>
+                  <span style="color:#7e828a;margin-left:auto;">允许重复</span>
+                </div>
+              </div>
+
+              <!-- 记录 2 -->
+              <div style="background:#1a1f27;border-radius:14px;padding:14px 16px;cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <span style="font-size:12px;color:#ececec;font-weight:600;">1 ~ 100 × 50个</span>
+                  <span style="font-size:10px;color:#7e828a;">22:10:47</span>
+                </div>
+                <div style="display:flex;gap:8px;font-size:11px;">
+                  <span style="color:#81c784;">大 28</span>
+                  <span style="color:#7e828a;">|</span>
+                  <span style="color:#ef9a9a;">小 22</span>
+                  <span style="color:#7e828a;margin-left:auto;">不重复</span>
+                </div>
+              </div>
+
+              <!-- 记录 3 -->
+              <div style="background:#1a1f27;border-radius:14px;padding:14px 16px;cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <span style="font-size:12px;color:#ececec;font-weight:600;">0 ~ 36 × 20个</span>
+                  <span style="font-size:10px;color:#7e828a;">21:58:22</span>
+                </div>
+                <div style="display:flex;gap:8px;font-size:11px;">
+                  <span style="color:#81c784;">大 11</span>
+                  <span style="color:#7e828a;">|</span>
+                  <span style="color:#ef9a9a;">小 9</span>
+                  <span style="color:#7e828a;margin-left:auto;">允许重复</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:center;margin-top:14px;font-size:11px;color:#4f535b;">点击记录可回看完整结果</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px;">
+  <h3>变更摘要</h3>
+  <ul>
+    <li><strong>角标计数</strong> — 每个数字方块右上角显示该类别的序号（第几个大数 / 第几个小数），颜色与数字同色但更淡，不干扰主数字阅读</li>
+    <li><strong>历史弹窗</strong> — 顶栏增加「历史记录」pill 按钮，点击弹出模态窗。每条记录显示：参数摘要（范围×个数）、生成时间、大小统计概览。点击可恢复查看完整结果。数据存在本地 Storage 中。</li>
+  </ul>
+</div>

@@ -43,7 +43,10 @@
 
     <view class="btn-row">
       <view class="pill-btn btn-reset" bindtap="onReset">重置</view>
-      <view class="pill-btn-primary btn-generate" bindtap="onGenerate">生成随机数</view>
+      <view class="btn-generate-wrap">
+        <view class="pill-btn-primary btn-generate" bindtap="onGenerate">生成随机数</view>
+        <text wx:if="{{roundCount > 0}}" class="round-badge">第{{roundCount}}手</text>
+      </view>
     </view>
   </view>
 
@@ -58,14 +61,15 @@
     </view>
 
     <!-- 数字网格 -->
-    <view class="num-grid">
+    <view class="num-grid {{results.length === 1 ? 'single' : ''}}">
       <view
         wx:for="{{results}}"
         wx:key="index"
-        class="num-cell {{item.isBig ? 'big' : 'small'}}"
+        class="num-cell {{item.isBig ? 'big' : 'small'}} {{item.isGuan ? 'guan' : ''}}"
       >
         <text class="num-value">{{item.value}}</text>
         <text class="num-badge {{item.isBig ? 'big' : 'small'}}">{{item.badge}}</text>
+        <text wx:if="{{item.isGuan}}" class="guan-badge">灌</text>
       </view>
     </view>
 
@@ -75,19 +79,24 @@
       <text class="stats-title">大小统计（分界点：{{threshold}}）</text>
       <view class="stats-row">
         <view class="stats-cell">
+          <text class="stats-label small">小（{{'<' + threshold}}）</text>
+          <text class="stats-num small">{{smallCount}}</text>
+          <text class="stats-pct">{{smallPct}}%</text>
+        </view>
+        <view class="stats-cell">
           <text class="stats-label big">大（≥{{threshold}}）</text>
           <text class="stats-num big">{{bigCount}}</text>
           <text class="stats-pct">{{bigPct}}%</text>
         </view>
-        <view class="stats-cell">
-          <text class="stats-label small">小（&lt;{{threshold}}）</text>
-          <text class="stats-num small">{{smallCount}}</text>
-          <text class="stats-pct">{{smallPct}}%</text>
-        </view>
       </view>
       <view class="ratio-bar">
-        <view class="ratio-big" style="width: {{bigRatio}}%"></view>
         <view class="ratio-small" style="width: {{smallRatio}}%"></view>
+        <view class="ratio-big" style="width: {{bigRatio}}%"></view>
+      </view>
+
+      <view class="sum-section">
+        <text class="sum-label">求和</text>
+        <text class="sum-value">{{sumTotal}}</text>
       </view>
     </view>
   </view>
@@ -95,6 +104,13 @@
   <!-- 空状态 -->
   <view class="card" wx:if="{{!generated}}">
     <text class="empty-text">请生成随机数</text>
+  </view>
+
+  <!-- 底部 slogan -->
+  <view class="slogan-section">
+    <view class="slogan-divider"></view>
+    <text class="slogan-text">无广告 · 优质交互 · 开源公正</text>
+    <text class="slogan-sub">用真诚的代码，让这个世界变得更美好一些。</text>
   </view>
 
   <!-- 历史记录弹窗 -->
@@ -121,10 +137,21 @@
             <text class="history-params">{{item.minVal}} ~ {{item.maxVal}} × {{item.count}}个</text>
             <text class="history-time">{{utils.formatTime(item.timestamp)}}</text>
           </view>
+          <view class="history-nums">
+            <text
+              wx:for="{{item.results}}"
+              wx:for-item="r"
+              wx:for-index="ri"
+              wx:key="ri"
+              class="history-num-tag {{r.isBig ? 'big' : 'small'}}"
+            >{{r.value}}</text>
+          </view>
           <view class="history-stats">
             <text class="history-big">大 {{item.bigCount}}</text>
             <text class="history-sep">|</text>
             <text class="history-small">小 {{item.smallCount}}</text>
+            <text class="history-sep">|</text>
+            <text class="history-sum">和 {{item.sumTotal}}</text>
             <text class="history-dup">{{item.allowDup ? '允许重复' : '不重复'}}</text>
           </view>
         </view>

@@ -1,0 +1,7 @@
+{"type":"server-started","port":49737,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:49737","screen_dir":"/Users/lost/play/random-generator-app/.superpowers/brainstorm/77703-1780842245/content","state_dir":"/Users/lost/play/random-generator-app/.superpowers/brainstorm/77703-1780842245/state"}
+{"type":"screen-added","file":"/Users/lost/play/random-generator-app/.superpowers/brainstorm/77703-1780842245/content/layout-options.html"}
+{"source":"user-event","type":"click","text":"RANDOM GEN\n          \n        \n\n        \n        \n          SETTINGS\n          \n            Min 0\n            Max 60\n          \n          \n            Count 100\n            Dup\n          \n          \n          Generate\n        \n\n        \n        \n          Tap \"Generate\" to start\n        \n      \n    \n    \n      B. 配置优先\n      配置区在上方，按下生成后结果和统计在下方展开。更接近原始小程序截图的布局顺序。首次打开时看到的是配置界面，生成后结果向下推展。","choice":"b","id":null,"timestamp":1780842832464}
+{"type":"screen-added","file":"/Users/lost/play/random-generator-app/.superpowers/brainstorm/77703-1780842245/content/design-detail.html"}
+{"type":"screen-added","file":"/Users/lost/play/random-generator-app/.superpowers/brainstorm/77703-1780842245/content/design-detail-v2.html"}
+{"type":"screen-added","file":"/Users/lost/play/random-generator-app/.superpowers/brainstorm/77703-1780842245/content/waiting.html"}
+{"type":"server-stopped","reason":"idle timeout"}
