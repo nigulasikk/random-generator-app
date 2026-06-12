@@ -17,11 +17,51 @@ Page({
     bigRatio: 50,
     smallRatio: 50,
     roundCount: 0,
-    sumTotal: 0
+    sumTotal: 0,
+    splashVisible: true,
+    splashLeaving: false,
+    splashTip: '点击「摇一摇」即可再次开摇'
   },
 
   onLoad() {
     this.loadHistory()
+    this.playSplash('点击顶部标题可再看一次')
+  },
+
+  onReplaySplash() {
+    if (this.data.splashVisible) return
+    this.playSplash('')
+  },
+
+  playSplash(tip) {
+    clearTimeout(this.splashTimer1)
+    clearTimeout(this.splashTimer2)
+    this.setData({
+      splashVisible: true,
+      splashLeaving: false,
+      splashTip: tip || ''
+    })
+    // 停留约 2.3s，退场动画 0.7s，整体约 3s
+    this.splashTimer1 = setTimeout(() => {
+      this.setData({ splashLeaving: true })
+      this.splashTimer2 = setTimeout(() => {
+        this.setData({ splashVisible: false, splashLeaving: false })
+      }, 700)
+    }, 2300)
+  },
+
+  onSkipSplash() {
+    if (!this.data.splashVisible || this.data.splashLeaving) return
+    clearTimeout(this.splashTimer1)
+    this.setData({ splashLeaving: true })
+    this.splashTimer2 = setTimeout(() => {
+      this.setData({ splashVisible: false, splashLeaving: false })
+    }, 700)
+  },
+
+  onUnload() {
+    clearTimeout(this.splashTimer1)
+    clearTimeout(this.splashTimer2)
   },
 
   onMinInput(e) {

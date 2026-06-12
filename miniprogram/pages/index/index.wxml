@@ -1,8 +1,15 @@
 <wxs src="./index.wxs" module="utils" />
 
+<!-- 开机动画 -->
+<view wx:if="{{splashVisible}}" class="splash {{splashLeaving ? 'splash-leave' : ''}}" bindtap="onSkipSplash">
+  <view class="splash-glow"></view>
+  <image class="splash-img" src="/assets/yao.png" mode="aspectFit" />
+  <text wx:if="{{splashTip}}" class="splash-tip">{{splashTip}}</text>
+</view>
+
 <view class="page">
   <!-- 活动主视觉 -->
-  <view class="hero">
+  <view class="hero" bindtap="onReplaySplash">
     <view class="hero-main">
       <text class="hero-title">神秘叔文玩回血</text>
       <view class="hero-tagline">
