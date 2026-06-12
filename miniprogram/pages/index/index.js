@@ -20,7 +20,8 @@ Page({
     sumTotal: 0,
     splashVisible: true,
     splashLeaving: false,
-    splashTip: '点击「摇一摇」即可再次开摇'
+    splashTip: '点击「摇一摇」即可再次开摇',
+    fireworks: []
   },
 
   onLoad() {
@@ -62,6 +63,7 @@ Page({
   onUnload() {
     clearTimeout(this.splashTimer1)
     clearTimeout(this.splashTimer2)
+    clearTimeout(this.fwTimer)
   },
 
   onMinInput(e) {
@@ -165,6 +167,37 @@ Page({
     })
 
     this.saveToHistory(results, threshold, bigCount, smallCount, sumTotal)
+
+    const guanCount = results.filter(r => r.isGuan).length
+    if (guanCount > 0) this.launchFireworks(guanCount)
+  },
+
+  launchFireworks(guanCount) {
+    clearTimeout(this.fwTimer)
+    const colors = ['#45e6a4', '#ffd54f', '#ff8a65', '#4fc3f7', '#f06292', '#ba68c8']
+    const burstCount = Math.min(2 + guanCount, 6)
+    const particlesPerBurst = 14
+    const bursts = []
+    for (let b = 0; b < burstCount; b++) {
+      const cx = 15 + Math.random() * 70   // 爆点横向 15%~85%
+      const cy = 20 + Math.random() * 45   // 爆点纵向 20%~65%
+      const delay = Math.round(Math.random() * 500)
+      const particles = []
+      for (let i = 0; i < particlesPerBurst; i++) {
+        const angle = (360 / particlesPerBurst) * i + Math.random() * 12
+        const dist = 90 + Math.random() * 70
+        const rad = angle * Math.PI / 180
+        particles.push({
+          dx: Math.round(Math.cos(rad) * dist) + 'rpx',
+          dy: Math.round(Math.sin(rad) * dist) + 'rpx',
+          color: colors[Math.floor(Math.random() * colors.length)],
+          delay: delay + 'ms'
+        })
+      }
+      bursts.push({ cx: cx + '%', cy: cy + '%', particles })
+    }
+    this.setData({ fireworks: bursts })
+    this.fwTimer = setTimeout(() => this.setData({ fireworks: [] }), 1600)
   },
 
   generateNumbers(min, max, count, allowDup) {

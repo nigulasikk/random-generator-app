@@ -7,6 +7,25 @@
   <text wx:if="{{splashTip}}" class="splash-tip">{{splashTip}}</text>
 </view>
 
+<!-- 烟花层 -->
+<view wx:if="{{fireworks.length}}" class="fireworks">
+  <view
+    wx:for="{{fireworks}}"
+    wx:for-item="burst"
+    wx:key="index"
+    class="fw-burst"
+    style="left: {{burst.cx}}; top: {{burst.cy}};"
+  >
+    <view
+      wx:for="{{burst.particles}}"
+      wx:for-item="p"
+      wx:key="index"
+      class="fw-particle"
+      style="--dx: {{p.dx}}; --dy: {{p.dy}}; background: {{p.color}}; animation-delay: {{p.delay}};"
+    ></view>
+  </view>
+</view>
+
 <view class="page">
   <!-- 活动主视觉 -->
   <view class="hero" bindtap="onReplaySplash">
