@@ -1,20 +1,26 @@
 <wxs src="./index.wxs" module="utils" />
 
 <view class="page">
-  <!-- 顶栏 -->
-  <view class="topbar">
-    <view class="brand">
-      <view class="brand-dot"></view>
-      <text class="brand-text">随机数生成器</text>
+  <!-- 活动主视觉 -->
+  <view class="hero">
+    <view class="hero-main">
+      <text class="hero-title">神秘叔文玩回血</text>
+      <view class="hero-tagline">
+        <view class="hero-rule"></view>
+        <text class="hero-accent">摇摇乐</text>
+        <view class="hero-rule"></view>
+      </view>
     </view>
-    <view class="pill-btn" bindtap="onShowHistory">历史记录</view>
   </view>
 
   <!-- 配置卡片 -->
   <view class="card">
-    <view class="section-label">
-      <view class="section-dot"></view>
-      <text>参数设置</text>
+    <view class="section-label section-label-row">
+      <view class="section-label-main">
+        <view class="section-dot"></view>
+        <text>参数设置</text>
+      </view>
+      <view class="pill-btn" bindtap="onShowHistory">历史记录</view>
     </view>
 
     <view class="param-grid">
