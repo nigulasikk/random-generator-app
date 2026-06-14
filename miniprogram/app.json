@@ -3,7 +3,7 @@
     "pages/index/index"
   ],
   "window": {
-    "navigationBarTitleText": "神秘叔摇摇乐",
+    "navigationBarTitleText": "摇摇随机数",
     "navigationBarBackgroundColor": "#0a0d12",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#0a0d12",
