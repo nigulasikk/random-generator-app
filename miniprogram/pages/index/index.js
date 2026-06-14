@@ -220,6 +220,16 @@ Page({
     return numbers
   },
 
+  onOpenRepo() {
+    const url = 'https://github.com/nigulasikk/random-generator-app'
+    wx.setClipboardData({
+      data: url,
+      success() {
+        wx.showToast({ title: '链接已复制，请到浏览器打开', icon: 'none' })
+      }
+    })
+  },
+
   onCopy() {
     const text = this.data.results.map(r => r.value).join(', ')
     wx.setClipboardData({

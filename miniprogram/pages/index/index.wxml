@@ -141,7 +141,7 @@
   <!-- 底部 slogan -->
   <view class="slogan-section">
     <view class="slogan-divider"></view>
-    <text class="slogan-text">无广告 · 优质交互 · 开源公正</text>
+    <text class="slogan-text">无广告 · 优质交互 · <text class="slogan-link" bindtap="onOpenRepo">开源公正</text></text>
     <text class="slogan-sub">用真诚的代码，让这个世界变得更美好一些。</text>
   </view>
 

@@ -722,6 +722,11 @@
   margin-bottom: 12rpx;
 }
 
+.slogan-link {
+  color: var(--mint);
+  text-decoration: underline;
+}
+
 .slogan-sub {
   display: block;
   font-size: 20rpx;
