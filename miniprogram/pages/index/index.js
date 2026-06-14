@@ -166,7 +166,7 @@ Page({
       errorMsg: ''
     })
 
-    this.saveToHistory(results, threshold, bigCount, smallCount, sumTotal)
+    this.saveToHistory(results, threshold, bigCount, smallCount, sumTotal, bigPct, smallPct, bigRatio, smallRatio, newRound)
 
     const guanCount = results.filter(r => r.isGuan).length
     if (guanCount > 0) this.launchFireworks(guanCount)
@@ -227,7 +227,7 @@ Page({
     })
   },
 
-  saveToHistory(results, threshold, bigCount, smallCount, sumTotal) {
+  saveToHistory(results, threshold, bigCount, smallCount, sumTotal, bigPct, smallPct, bigRatio, smallRatio, roundCount) {
     const { minVal, maxVal, count, allowDup } = this.data
     const record = {
       id: Date.now(),
@@ -239,6 +239,11 @@ Page({
       bigCount,
       smallCount,
       sumTotal,
+      bigPct,
+      smallPct,
+      bigRatio,
+      smallRatio,
+      roundCount,
       results,
       timestamp: Date.now()
     }
@@ -262,6 +267,7 @@ Page({
 
   onHistoryTap(e) {
     const record = e.currentTarget.dataset.record
+    const total = record.bigCount + record.smallCount
     this.setData({
       minVal: record.minVal,
       maxVal: record.maxVal,
@@ -272,6 +278,12 @@ Page({
       threshold: record.threshold,
       bigCount: record.bigCount,
       smallCount: record.smallCount,
+      sumTotal: record.sumTotal,
+      bigPct: record.bigPct != null ? record.bigPct : (total > 0 ? (record.bigCount / total * 100).toFixed(1) : '0.0'),
+      smallPct: record.smallPct != null ? record.smallPct : (total > 0 ? (record.smallCount / total * 100).toFixed(1) : '0.0'),
+      bigRatio: record.bigRatio != null ? record.bigRatio : (total > 0 ? record.bigCount / total * 100 : 50),
+      smallRatio: record.smallRatio != null ? record.smallRatio : (total > 0 ? record.smallCount / total * 100 : 50),
+      roundCount: record.roundCount != null ? record.roundCount : 0,
       showHistory: false
     })
   },

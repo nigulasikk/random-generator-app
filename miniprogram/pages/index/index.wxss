@@ -621,6 +621,23 @@
   margin-bottom: 12rpx;
 }
 
+.history-params-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.history-round {
+  font-size: 20rpx;
+  font-weight: 700;
+  color: var(--mint);
+  background: var(--card-soft);
+  border: 1rpx solid var(--rule);
+  padding: 4rpx 14rpx;
+  border-radius: 999rpx;
+  letter-spacing: 0.04em;
+}
+
 .history-params {
   font-size: 24rpx;
   color: var(--ink);

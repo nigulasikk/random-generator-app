@@ -166,7 +166,10 @@
           bindtap="onHistoryTap"
         >
           <view class="history-top">
-            <text class="history-params">{{item.minVal}} ~ {{item.maxVal}} × {{item.count}}个</text>
+            <view class="history-params-wrap">
+              <text wx:if="{{item.roundCount}}" class="history-round">第{{item.roundCount}}手</text>
+              <text class="history-params">{{item.minVal}} ~ {{item.maxVal}} × {{item.count}}个</text>
+            </view>
             <text class="history-time">{{utils.formatTime(item.timestamp)}}</text>
           </view>
           <view class="history-nums">
